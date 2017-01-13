@@ -252,7 +252,7 @@ var drivy;
 for (var i = 0, c = actors.length; i < c; i++) {
 
 for (var j =0, d=rentals.length;j<d;j++){
-if(actors[i].rentalId = rentals[j].id){
+if(actors[i].rentalId == rentals[j].id){
 price=rentals[j].price;
  date =getDateDiff(rentals[j].returnDate,rentals[j].pickupDate) + 1;
 insurance=rentals[j].commission.insurance;
@@ -261,20 +261,20 @@ drivy=rentals[j].commission.drivy;
 }
 }
 
-for (var z = 0, l = 5; z < l; z++){
+for (var z = 0, l = actors[i].payment.length; z < l; z++){
 if(actors[i].payment[z].who == "driver"){
 actors[i].payment[z].amount=price;
 }
-else if(actors[i].payment[z].who = "owner"){
+else if(actors[i].payment[z].who == "owner"){
 actors[i].payment[z].amount=price*0.7;
 }
-else if(actors[i].payment[z].who = "insurance"){
+else if(actors[i].payment[z].who == "insurance"){
 actors[i].payment[z].amount=insurance;
 }
-else if(actors[i].payment[z].who = "assistance"){
+else if(actors[i].payment[z].who == "assistance"){
 actors[i].payment[z].amount=assistance;
 }
-else if(actors[i].payment[z].who = "drivy"){
+else if(actors[i].payment[z].who == "drivy"){
 actors[i].payment[z].amount=drivy;
 
 }}
