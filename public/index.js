@@ -209,6 +209,7 @@ pricekm=cars[j].pricePerKm;
 }
 }
 var date =getDateDiff(rentals[i].returnDate,rentals[i].pickupDate) + 1;
+
 if(date>1 && date<=4){
 priceday=priceday*0.9;
 }
@@ -223,9 +224,27 @@ priceday=priceday*0.5;
 }
 
 }
+function commission(rentals){
+for (var i = 0, c = rentals.length; i < c; i++) {
+var date =getDateDiff(rentals[i].returnDate,rentals[i].pickupDate) + 1;
+var com=0.3*rentals[i].price;
+rentals[i].commission.insurance=0.5*com;
+rentals[i].commission.assistance=date;
+rentals[i].commission.drivy= 0.5*com - date ;
+
+}
+}
 console.log(cars);
 console.log(rentals);
 console.log(actors);
 console.log(rentalModifications);
 price_rental(cars, rentals);
+//console.log("exercice1");
+//console.log(rentals);
+
+price_rental_bis(cars, rentals);
+console.log("exercice2");
+console.log(rentals);
+commission(rentals);
+console.log("exercice3");
 console.log(rentals);
