@@ -192,7 +192,33 @@ priceday=cars[j].pricePerDay;
 pricekm=cars[j].pricePerKm;
 }
 }
-    rentals[i].price=getDateDiff(rentals[i].returnDate,rentals[i].pickupDate)*priceday + rentals[i].distance*pricekm;
+    rentals[i].price=(getDateDiff(rentals[i].returnDate,rentals[i].pickupDate)+1)*priceday + rentals[i].distance*pricekm;
+		
+}
+
+}
+function price_rental_bis(cars,rentals){
+var priceday;
+var pricekm;
+for (var i = 0, c = rentals.length; i < c; i++) {
+
+for (var j =0, d=cars.length;j<d;j++){
+if(rentals[i].carId = cars[j].id){
+priceday=cars[j].pricePerDay;
+pricekm=cars[j].pricePerKm;
+}
+}
+var date =getDateDiff(rentals[i].returnDate,rentals[i].pickupDate) + 1;
+if(date>1 && date<=4){
+priceday=priceday*0.9;
+}
+else if(date>4 && date<=10){
+priceday=priceday*0.7;
+}
+else if(date>10){
+priceday=priceday*0.5;
+}
+    rentals[i].price=date *priceday + rentals[i].distance*pricekm;
 		
 }
 
