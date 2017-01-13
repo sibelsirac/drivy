@@ -234,6 +234,14 @@ rentals[i].commission.drivy= 0.5*com - date ;
 
 }
 }
+function deductible(rentals){
+for (var i = 0, c = rentals.length; i < c; i++) {
+var date =getDateDiff(rentals[i].returnDate,rentals[i].pickupDate) + 1;
+if(rentals[i].options.deductibleReduction==true){
+rentals[i].price=rentals[i].price + 4*date;
+}
+}
+}
 console.log(cars);
 console.log(rentals);
 console.log(actors);
@@ -247,4 +255,7 @@ console.log("exercice2");
 console.log(rentals);
 commission(rentals);
 console.log("exercice3");
+console.log(rentals);
+deductible(rentals);
+console.log("exercice4");
 console.log(rentals);
