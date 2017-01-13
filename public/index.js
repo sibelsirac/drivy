@@ -239,7 +239,45 @@ for (var i = 0, c = rentals.length; i < c; i++) {
 var date =getDateDiff(rentals[i].returnDate,rentals[i].pickupDate) + 1;
 if(rentals[i].options.deductibleReduction==true){
 rentals[i].price=rentals[i].price + 4*date;
+rentals[i].commission.drivy=rentals[i].commission.drivy+4*date;
 }
+}
+}
+function actor(actors,rentals){
+var date;
+var price;
+var insurance;
+var assistance;
+var drivy;
+for (var i = 0, c = actors.length; i < c; i++) {
+
+for (var j =0, d=rentals.length;j<d;j++){
+if(actors[i].rentalId = rentals[j].id){
+price=rentals[j].price;
+ date =getDateDiff(rentals[j].returnDate,rentals[j].pickupDate) + 1;
+insurance=rentals[j].commission.insurance;
+assistance=rentals[j].commission.assistance;
+drivy=rentals[j].commission.drivy;
+}
+}
+
+for (var z = 0, l = 5; z < l; z++){
+if(actors[i].payment[z].who == "driver"){
+actors[i].payment[z].amount=price;
+}
+else if(actors[i].payment[z].who = "owner"){
+actors[i].payment[z].amount=price*0.7;
+}
+else if(actors[i].payment[z].who = "insurance"){
+actors[i].payment[z].amount=insurance;
+}
+else if(actors[i].payment[z].who = "assistance"){
+actors[i].payment[z].amount=assistance;
+}
+else if(actors[i].payment[z].who = "drivy"){
+actors[i].payment[z].amount=drivy;
+
+}}
 }
 }
 console.log(cars);
@@ -259,3 +297,7 @@ console.log(rentals);
 deductible(rentals);
 console.log("exercice4");
 console.log(rentals);
+actor(actors,rentals);
+console.log("exercice5");
+console.log(actors);
+
